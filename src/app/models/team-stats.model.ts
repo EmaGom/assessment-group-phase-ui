@@ -1,6 +1,6 @@
 import { Team } from "./team.model";
 
-export class TeamStataics {
+export class TeamStats {
     public id: number;
     public team: Team;
     public name: string;
@@ -11,6 +11,6 @@ export class TeamStataics {
     public draw  :number;
     public loss  :number;
     public for  :number;
-    public against :number; 
+    public against :number;
     public difference  :number;
 }

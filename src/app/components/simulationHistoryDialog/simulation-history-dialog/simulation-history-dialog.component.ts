@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { TeamStataics } from 'src/app/models/team-statics.model';
+import { TeamStats } from 'src/app/models/team-stats.model';
 
 @Component({
   selector: 'app-simulation-history-dialog',
@@ -14,8 +14,8 @@ export class SimulationHistoryDialogComponent {
     @Inject(MAT_DIALOG_DATA)
     public data: any) {}
 
-    public getGroupTeamStatics(index :number): TeamStataics[] {
-      return this.data.simulationsGroups[index].teamStatics;
+    public getGroupTeamStats(index :number): TeamStats[] {
+      return this.data.simulationsGroups[index].teamStats;
     }
 
 }

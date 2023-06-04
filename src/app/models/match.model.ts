@@ -1,8 +1,8 @@
-import { TeamStataics } from "./team-statics.model";
+import { TeamStats } from "./team-stats.model";
 
 export class Match {
-    public homeTeamStatics :TeamStataics;
-    public awayTeamStatics :TeamStataics;
+    public homeTeamStats :TeamStats;
+    public awayTeamStats :TeamStats;
     public matchDay :number;
     public homeScore: number;
     public awayScore: number;

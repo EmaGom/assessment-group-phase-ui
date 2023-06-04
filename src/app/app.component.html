@@ -5,7 +5,7 @@
   <button mat-raised-button class="m-3" (click)="viewSimulationHistory()">View Simulations History</button>
 </div>
 <positions-table-component
-  [teamsStaticsDataSource]="teamsStaticsDataSource">
+  [teamsStatsDataSource]="teamsStatsDataSource">
 </positions-table-component>
 
 <div class="center-div d-flex m-3">
@@ -16,10 +16,10 @@
 
 <div class="center-div d-flex">
   <div class="m-3">
-    <players-statics-component [playersDataSource]="scorersDataSource" [static]="'goals'"></players-statics-component>
+    <players-stats-component [playersDataSource]="scorersDataSource" [static]="'goals'"></players-stats-component>
   </div>
 
     <div class="m-3">
-      <players-statics-component [playersDataSource]="assistantsDataSource" [static]="'assists'"></players-statics-component>
+      <players-stats-component [playersDataSource]="assistantsDataSource" [static]="'assists'"></players-stats-component>
     </div>
   </div>

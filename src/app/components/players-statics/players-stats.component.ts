@@ -4,11 +4,11 @@ import { Player } from 'src/app/models/player.model';
 
 
 @Component({
-  selector: 'players-statics-component',
-  templateUrl: './players-statics.component.html',
-  styleUrls: ['./players-statics.component.scss']
+  selector: 'players-stats-component',
+  templateUrl: './players-stats.component.html',
+  styleUrls: ['./players-stats.component.scss']
 })
-export class PlayersStaticsComponent implements OnInit, OnDestroy {
+export class PlayersStatsComponent implements OnInit, OnDestroy {
   @Input() static :string;
   @Input() playersDataSource: Player[] = [];
 

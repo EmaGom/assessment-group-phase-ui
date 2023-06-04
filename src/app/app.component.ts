@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Match } from './models/match.model';
 import { Player } from './models/player.model';
 import { Group } from './models/group.model';
-import { TeamStataics } from './models/team-statics.model';
+import { TeamStats } from './models/team-stats.model';
 import { MatDialog } from '@angular/material/dialog';
 import { SimulationHistoryDialogComponent } from './components/simulationHistoryDialog/simulation-history-dialog/simulation-history-dialog.component';
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component';
@@ -17,12 +17,12 @@ import { GenericDialogComponent } from './components/generic-dialog/generic-dial
 export class AppComponent implements OnInit, OnDestroy {
   public title = 'Group Phase';
   public displayedColumns: string[] = ['position', 'name', 'played', 'win' , 'draw', 'loss', 'for', 'against', 'difference', 'points'];
-  private subscriptions: Subscription = new Subscription();
-  public teamsStaticsDataSource: TeamStataics[] = [];
+  public teamsStatsDataSource: TeamStats[] = [];
   public matchesDataSource: Match[] = [];
   public scorersDataSource: Player[] = [];
   public assistantsDataSource: Player[] = [];
   public group: Group;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private groupPhaseService: GroupPhaseService,
     public dialog: MatDialog) {}
@@ -36,9 +36,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public newSimulation(): void {
-    this.subscriptions.add(this.groupPhaseService.get().subscribe(group => {
+    this.subscriptions.add(this.groupPhaseService.getGroup().subscribe(group => {
       this.group = group;
-      this.teamsStaticsDataSource = group.teamStatics;
+      this.teamsStatsDataSource = group.teamStats;
       this.matchesDataSource = group.matches;
       this.scorersDataSource = group.scorers;
       this.assistantsDataSource = group.assistants;

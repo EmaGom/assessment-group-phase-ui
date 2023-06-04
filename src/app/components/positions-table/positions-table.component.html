@@ -1,15 +1,15 @@
-<mat-table [dataSource]="teamsStaticsDataSource" class="mat-elevation-z8">
+<mat-table [dataSource]="teamsStatsDataSource" class="mat-elevation-z8">
   <ng-container *ngFor="let column of displayedColumns; index as columnIndex">
     <ng-container [matColumnDef]="column">
       <mat-header-cell *matHeaderCellDef>
         {{displayedColumns[columnIndex] | titlecase}}
       </mat-header-cell>
-      <mat-cell *matCellDef="let teamStatics" [ngStyle]="{'background-color': teamStatics.position < 3 ? ' rgb(207, 243, 207)' : ''}">
-        <span class="table-cell">{{teamStatics[column]}} </span>
+      <mat-cell *matCellDef="let teamStats" [ngStyle]="{'background-color': teamStats.position < 3 ? ' rgb(207, 243, 207)' : ''}">
+        <span class="table-cell">{{teamStats[column]}} </span>
       </mat-cell>
     </ng-container>
   </ng-container>
   <!-- Header/Row/Footer definitions -->
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let teamStatics; columns: displayedColumns;"></mat-row>
+  <mat-row *matRowDef="let teamStats; columns: displayedColumns;"></mat-row>
 </mat-table>

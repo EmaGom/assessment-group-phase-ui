@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Observable, map, retry, timeout } from "rxjs";
-import { Team } from "../models/team.model";
 import { Match } from "../models/match.model";
 import { Group } from "../models/group.model";
 
@@ -9,25 +8,26 @@ import { Group } from "../models/group.model";
   providedIn: 'root'
 })
 export class GroupPhaseService {
-
+    private url = 'https://localhost:5001/groupSimulator/';
     private httpHeaders: HttpHeaders;
 
-    constructor(private httpClient: HttpClient) {
-        this.httpHeaders = new HttpHeaders({
-          'Access-Control-Allow-Origin': '*'
-      })};
+  constructor(private httpClient: HttpClient) {
+      this.httpHeaders = new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
+    })};
 
-  public get(): Observable<Group> {
-    return this.httpClient.get<Group>(`https://localhost:5001/groupSimulator/GetGroup`, { headers: this.httpHeaders }).pipe(
+  public getGroup(): Observable<Group> {
+    const name = 'GetGroup';
+    return this.httpClient.get<Group>(`${this.url}${name}`, { headers: this.httpHeaders }).pipe(
         timeout(15000),
         map(data =>
         {
-          data.teamStatics.map(t =>  t.position = data.teamStatics.indexOf(t) + 1)
-          data.teamStatics.map(t =>  t.name = t.team.name)
-          data.teamStatics.map(t =>  t.team = t.team)
+          data.teamStats.map(t =>  t.position = data.teamStats.indexOf(t) + 1)
+          data.teamStats.map(t =>  t.name = t.team.name)
+          data.teamStats.map(t =>  t.team = t.team)
           data.matches.map(m => {
-            m.awayTeamStatics.name = m.awayTeamStatics.team.name;
-            m.homeTeamStatics.name = m.homeTeamStatics.team.name;
+            m.awayTeamStats.name = m.awayTeamStats.team.name;
+            m.homeTeamStats.name = m.homeTeamStats.team.name;
           } )
           data.scorers.map(s => s.position = data.scorers.indexOf(s) + 1),
           data.assistants.map(a =>  a.position = data.assistants.indexOf(a) + 1)
@@ -37,24 +37,27 @@ export class GroupPhaseService {
   }
 
   public getMatches(): Observable<Match[]> {
-    return this.httpClient.get<Match[]>(`https://localhost:5001/groupSimulator/GetMatches`, { headers: this.httpHeaders }).pipe(
+    const name = 'GetMatches';
+    return this.httpClient.get<Match[]>(`${this.url}${name}`, { headers: this.httpHeaders }).pipe(
         timeout(15000),
         map(data => data as Match[])
     );
   }
 
   public saveSimulation(group :Group): Observable<number> {
-    return this.httpClient.post<number>(`https://localhost:5001/groupSimulator/SaveGroup`, group, { headers: this.httpHeaders }).pipe(
+    const name = 'SaveGroup';
+    return this.httpClient.post<number>(`${this.url}${name}`, group, { headers: this.httpHeaders }).pipe(
       timeout(15000),
       map(data => data as number)
     );
   }
 
   public getSimulationHistory(): Observable<Group[]> {
-    return this.httpClient.get<Group[]>(`https://localhost:5001/groupSimulator/GetGroupsHistory`, { headers: this.httpHeaders }).pipe(
+    const name = 'GetGroupsHistory';
+    return this.httpClient.get<Group[]>(`${this.url}${name}`, { headers: this.httpHeaders }).pipe(
         timeout(15000),
         map(data => {
-          data.map(g => g.teamStatics.map(t => t.name = t.team.name))
+          data.map(g => g.teamStats.map(t => t.name = t.team.name))
           return data as Group[]
         })
     );
