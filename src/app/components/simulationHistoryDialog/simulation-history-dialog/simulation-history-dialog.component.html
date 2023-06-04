@@ -1,0 +1,9 @@
+<ng-container *ngFor="let group of data.simulationsGroups; index as groupIndex">
+    <div class="m-4">
+      <h3>Simulation number: {{ group.id }} </h3>
+      <positions-table-component
+        [teamsStaticsDataSource]="getGroupTeamStatics(groupIndex)">
+      </positions-table-component>
+    </div>
+    <mat-divider></mat-divider>
+</ng-container>

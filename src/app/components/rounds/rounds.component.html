@@ -1,0 +1,27 @@
+<div class="m-3">
+  <h5>Round {{roundNumber}}</h5>
+  <mat-table mat-table [dataSource]="matchesDataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="homeTeam">
+      <th mat-header-cell *matHeaderCellDef> Home </th>
+      <td mat-cell *matCellDef="let match" [ngStyle]="{'color': match.homeScore > match.awayScore ? 'green' : ''}">
+        {{match.homeTeamStatics.name}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef> Score </th>
+      <td mat-cell *matCellDef="let match"> {{match.homeScore}} - {{match.awayScore}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="awayTeam">
+      <th mat-header-cell *matHeaderCellDef> Away </th>
+      <td mat-cell *matCellDef="let match" [ngStyle]="{'color': match.awayScore > match.homeScore ? 'green' : ''}">
+         {{match.awayTeamStatics.name}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </mat-table>
+</div>
