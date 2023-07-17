@@ -1,0 +1,25 @@
+<div class="center-div">
+  <h1>{{title}}</h1>
+  <button mat-raised-button class="m-3" (click)="newSimulation()">New Simulation</button>
+  <button mat-raised-button class="m-3" (click)="saveSimulation()">Save Simulation</button>
+  <button mat-raised-button class="m-3" (click)="viewSimulationHistory()">View Simulations History</button>
+</div>
+<positions-table-component
+  [teamsStatsDataSource]="teamsStatsDataSource">
+</positions-table-component>
+
+<div class="center-div d-flex m-3">
+  <rounds-component [roundNumber]="1" [matchesDataSource]="getRound(1)"></rounds-component>
+  <rounds-component [roundNumber]="2" [matchesDataSource]="getRound(2)"></rounds-component>
+  <rounds-component [roundNumber]="3" [matchesDataSource]="getRound(3)"></rounds-component>
+</div>
+
+<div class="center-div d-flex">
+  <div class="m-3">
+    <players-stats-component [playersDataSource]="scorersDataSource" [static]="'goals'"></players-stats-component>
+  </div>
+
+    <div class="m-3">
+      <players-stats-component [playersDataSource]="assistantsDataSource" [static]="'assists'"></players-stats-component>
+    </div>
+  </div>

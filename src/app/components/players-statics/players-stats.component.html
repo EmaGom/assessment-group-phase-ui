@@ -1,0 +1,13 @@
+<h5>{{static | titlecase}} </h5>
+<mat-table  [dataSource]="playersDataSource" class="mat-elevation-z8">
+  <ng-container *ngFor="let column of displayedColumns; index as columnIndex">
+    <ng-container [matColumnDef]="column">
+      <mat-header-cell *matHeaderCellDef> {{displayedColumns[columnIndex] | titlecase}} </mat-header-cell>
+      <mat-cell *matCellDef="let player">
+        {{player[column]}}
+      </mat-cell>
+    </ng-container>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let player; columns: displayedColumns;"></mat-row>
+</mat-table>

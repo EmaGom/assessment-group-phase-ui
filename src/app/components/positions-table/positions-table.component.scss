@@ -1,0 +1,15 @@
+mat-table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  width: 100%;
+  overflow: auto;
+
+  mat-header-cell {
+    background-color: black;
+    color: white;
+  }
+}
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
